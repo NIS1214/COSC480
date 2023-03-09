@@ -3,10 +3,6 @@ body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
 }
-.column {
-  float: left;
-  width: 33.33%;
-}
 
 .container {
   max-width: 1200px;
@@ -16,9 +12,10 @@ body {
 
 /* Header styles */
 header {
-  background-color: #000000;
+  background-color: #1260cc;
   color: #fff;
   padding: 20px 0;
+  margin-top: 0;
 }
 
 nav ul {
@@ -26,42 +23,24 @@ nav ul {
   margin: 0;
   padding: 0;
   display: flex;
-  justify-content: space-between;
-}
-
-.dashboard__item {
-  border: 1px solid #3a9bdc;
-  border-radius: 10px;
-  padding: 20px;
-  width: 30%;
-}
-
-.dashboard__item h2 {
-  margin: 0;
-  font-size: 36px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.dashboard__item p {
-  margin: 0;
-  font-size: 35px;
+  justify-content: space-around;
 }
 
 nav a {
   color: #fff;
   text-decoration: none;
+  margin: 0;
 }
 
 /* Hero section styles */
 .hero {
-  background-image: url('gold.jpg');
+  background-color:#5a788d;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
-  height: 250px;
-  color: #000000;
+  height: 150px;
+  color: #fff;
 }
 .hero-content {
   display: flex;
@@ -79,77 +58,80 @@ nav a {
 
 .hero-content p {
   font-size: 24px;
-  margin: 20px 0;
+  margin: 15px 0;
   text-align: right;
 }
 
-.btn-primary {
-  align-self: flex-end;
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 5px;
-  text-decoration: none;
-  font-size: 20px;
-}
-
-.btn-primary:hover {
-  background-color: #0062cc;
-}
 
 /* Dashboard styles */
 .dashboard {
   display: flex;
-  justify-content: space-between;
-  margin-top: 40px;
+  justify-content: space-around;
+  margin-top: 10px;
 }
 
-.dashboard__item {
+.dashboard-item {
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 20px;
   width: 30%;
+  background-color:#3a9bdc;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+.dashboard-item span {
+  border: 1px solid #ccc;
+  padding: 10px;
+  display: block;
+  margin-bottom: 10px;
+  border-radius: 5px;
 }
 
-.dashboard__item--center {
-  margin: 0 10%;
-}
-
-.dashboard__item h2 {
+.dashboard-item h2 {
   margin: 0;
   font-size: 36px;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
-.dashboard__item p {
+.dashboard-item p {
   margin: 0;
   font-size: 35px;
 }
 
-.dashboard__input {
-  margin-top: 40px;
+.dashboard-input {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+  justify-content: flex-end;
 }
 
-.dashboard__input label {
-  font-size: 35px;
-  display: block;
-  margin-bottom: 10px;
-}
-
-.dashboard__input input {
-  font-size: 35px;
+.dashboard-input input {
+  border: 1px solid #ccc;
   padding: 10px;
   width: 100%;
   border-radius: 5px;
-  border: 1px solid #ccc;
   font-family: 'Poppins', sans-serif;
+  margin-bottom: 10px;
 }
 
-.dashboard__input button {
-  font-size: 35px;
+.dashboard-input label {
+  display: block;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.dashboard-input button {
   padding: 10px;
-  background-color: #007bff;
+  background-color: #3a9bdc;
   color: #fff;
   border-radius: 5px;
   border: none;
@@ -157,8 +139,21 @@ nav a {
   font-family: 'Poppins', sans-serif;
 }
 
-.dashboard__input button:hover {
-  background-color: #0062cc;
+.dashboard-input button:hover {
+  background-color: #3a9bdc;
+}
+
+.transaction-forms {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dashboard-input:first-child {
+  margin-right: 20px;
+}
+
+.dashboard-input:last-child {
+  margin-right: 20px;
 }
 
 @media screen and (max-width: 768px) {
@@ -166,12 +161,9 @@ nav a {
     flex-direction: column;
   }
 
-  .dashboard__item {
+  .dashboard-item {
     width: 100%;
     margin-bottom: 20px;
-  }
-
-  .dashboard__item--center {
-    margin: 0;
+    justify-content: space-around;
   }
 }

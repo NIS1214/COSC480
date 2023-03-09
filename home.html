@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>=
+    <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, intial-scale=1.0">
@@ -23,36 +23,42 @@
             <div class="hero-content">
                 <h1>Welcome to Bowie State Bank</h1>
                 <p>Start managing your finances with ease</p>
-                <a href="#" class="btn-primary">Get Started</a>
             </div>
         </section>
-        <p>Welcome, <span id="email-display"></span>!</p>
-        <section class="dashboard">
-            <div>
-                Total Deposit: $<span id="total-deposit">0.00</span>
+        <h2>Welcome, <span id="email-display"></span>!</h2>
+        <div class="dashboard">
+            <div class="dashboard-item">
+              <h2>Total Deposit:</h2>
+              <span id="total-deposit">0.00</span>
             </div>
-            <div>
-                Total Withdraw: $<span id="total-withdraw">0.00</span>
+            <div class="dashboard-item">
+              <h2>Total Withdraw:</h2>
+              <span id="total-withdraw">0.00</span>
             </div>
-            <div>
-                Total Balance: $<span id="total-balance">0.00</span>
+            <div class="dashboard-item">
+              <h2>Total Balance:</h2>
+              <span id="total-balance">0.00</span>
             </div>
-        </section>
-        <section class="transactions">
+          </div>       
+          <section class="transactions">
             <h2>Transactions</h2>
             <div class="transaction-forms">
+              <div class="dashboard-input">
                 <form id="deposit-form">
-                    <label for="deposit-amount">Deposit Amount:</label>
-                    <input type="number" step="0.01" min="0" id="deposit-amount" name="deposit-amount">
-                    <button type="submit">Deposit</button>
+                  <label for="deposit-amount">Deposit Amount:</label>
+                  <input type="number" step="0.01" min="0" id="deposit-amount" name="deposit-amount" />
+                  <button type="submit">Deposit</button>
                 </form>
+              </div>
+              <div class="dashboard-input">
                 <form id="withdraw-form">
-                    <label for="withdraw-amount">Withdraw Amount:</label>
-                    <input type="number" step="0.01" min="0" id="withdraw-amount" name="withdraw-amount">
-                    <button type="submit">Withdraw</button>
+                  <label for="withdraw-amount">Withdraw Amount:</label>
+                  <input type="number" step="0.01" min="0" id="withdraw-amount" name="withdraw-amount" />
+                  <button type="submit">Withdraw</button>
                 </form>
+              </div>
             </div>
-        </section>
+          </section>
         <script>
             function getQueryParam(param) {
                 const urlParams = new URLSearchParams(window.location.search);
