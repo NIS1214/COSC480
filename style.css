@@ -1,6 +1,7 @@
 *{
     font-family:   'Poppins', sans serif;
 }
+/*login */
 body{
     background-image: url("bank_background.jpg");
     background-size: cover;
@@ -15,6 +16,11 @@ body{
     justify-content: center;
     align-items: center;
     min-height: 90vh;
+}
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
 .container{
@@ -87,9 +93,12 @@ i{
     margin-top: 10px;
 }
 .left{
+
     display: flex;
 }
+
 label a{
     color: #fff;
     text-decoration: none;
 }
+

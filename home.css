@@ -1,0 +1,177 @@
+/* General styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+}
+.column {
+  float: left;
+  width: 33.33%;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header styles */
+header {
+  background-color: #000000;
+  color: #fff;
+  padding: 20px 0;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.dashboard__item {
+  border: 1px solid #3a9bdc;
+  border-radius: 10px;
+  padding: 20px;
+  width: 30%;
+}
+
+.dashboard__item h2 {
+  margin: 0;
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.dashboard__item p {
+  margin: 0;
+  font-size: 35px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Hero section styles */
+.hero {
+  background-image: url('gold.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  height: 250px;
+  color: #000000;
+}
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  padding: 0 20px;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  margin: 0;
+  text-align: right;
+}
+
+.hero-content p {
+  font-size: 24px;
+  margin: 20px 0;
+  text-align: right;
+}
+
+.btn-primary {
+  align-self: flex-end;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.btn-primary:hover {
+  background-color: #0062cc;
+}
+
+/* Dashboard styles */
+.dashboard {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.dashboard__item {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  width: 30%;
+}
+
+.dashboard__item--center {
+  margin: 0 10%;
+}
+
+.dashboard__item h2 {
+  margin: 0;
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.dashboard__item p {
+  margin: 0;
+  font-size: 35px;
+}
+
+.dashboard__input {
+  margin-top: 40px;
+}
+
+.dashboard__input label {
+  font-size: 35px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.dashboard__input input {
+  font-size: 35px;
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-family: 'Poppins', sans-serif;
+}
+
+.dashboard__input button {
+  font-size: 35px;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  margin-top: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.dashboard__input button:hover {
+  background-color: #0062cc;
+}
+
+@media screen and (max-width: 768px) {
+  .dashboard {
+    flex-direction: column;
+  }
+
+  .dashboard__item {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .dashboard__item--center {
+    margin: 0;
+  }
+}
