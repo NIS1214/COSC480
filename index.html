@@ -89,6 +89,8 @@
     </script>
      <script type="module">
         // Import the functions you need from the SDKs you need
+       // <!-- Add the line below to your index.html -->
+
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
         import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
         // TODO: Add SDKs for Firebase products that you want to use
@@ -105,9 +107,16 @@
         };
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
+
         console.log(app);
 
         const auth = getAuth();
+
+        function isValidEmail(email) {
+            const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+            return emailRegex.test(email);
+        }
+
 
         // Sign In
         function signIn(event) {
@@ -121,20 +130,34 @@
                 return;
             }
 
+            if (!isValidEmail(email)) {
+                alert("Please enter a valid email address.");
+                return;
+            }
+
             signInWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
                     // Signed in
                     const user = userCredential.user;
                     console.log("User signed in successfully:", user);
-                    window.location.href = "home.html?email=" + encodeURIComponent(email);
                     alert("Login Successfully");
+                    window.location.href = "home.html?email=" + encodeURIComponent(email);
                 })
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
                     console.error("Error signing in:", errorCode, errorMessage);
+
+                    // Show a popup with an error message for incorrect information
+                    if (errorCode === "auth/wrong-password" || errorCode === "auth/user-not-found") {
+                        alert("Incorrect email or password. Please try again!");
+                    } else {
+                        alert(errorMessage);
+                    }
                 });
-        }
+
+            }
+
         document.getElementById("login-form").addEventListener("submit", signIn);
 
         //Sign Up
@@ -149,12 +172,20 @@
                 return;
             }
 
+            if (!isValidEmail(email)) {
+                 alert("Please enter a valid email address.");
+                return;
+            }
+
             createUserWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
                     // Signed in
                     const user = userCredential.user;
                     console.log("User signed up successfully:", user);
                     alert("Sign Up Successfully");
+
+                    // Redirect user to login page after successful sign-up
+                    toggleForm();
                 })
                 .catch((error) => {
                     const errorCode = error.code;
@@ -162,8 +193,9 @@
                     console.error("Error signing up:", errorCode, errorMessage);
                 });
         }
+
         document.getElementById("signup-form").addEventListener("submit", signUp);
-      </script>   
+      </script>
 
 </body>
 </html>

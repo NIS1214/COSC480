@@ -7,6 +7,8 @@
         <title>bowiestatebank | Home Page</title>
         <link rel="stylesheet" href="home.css">
         <link rel="stylesheet" href="bowiestatebank/css/bowiestatebank.css">
+        <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js"></script>
     </head>
     <body>
         <header>
@@ -60,7 +62,7 @@
               </div>
             </div>
           </section>
-        <script>
+          <script>
             function getQueryParam(param) {
                 const urlParams = new URLSearchParams(window.location.search);
                 return urlParams.get(param);
@@ -72,13 +74,43 @@
             }
         
             // Mock data for demonstration purposes
-            let transactions = [
-                { type: "deposit", amount: 100.00 },
-                { type: "withdraw", amount: 50.00 },
-                { type: "deposit", amount: 75.00 },
-                { type: "withdraw", amount: 25.00 },
-            ];
-        
+            
+          </script>  
+
+          <script type="module"> 
+
+            import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js';
+            import { getDatabase, ref, set, get, child, update } from 'https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js';
+            const firebaseConfig = {
+              apiKey: "AIzaSyCG1FM4SRo9FS_fliVlY3WM-40315uU6iI",
+              authDomain: "login-9a924.firebaseapp.com",
+              databaseURL: "https://login-9a924-default-rtdb.firebaseio.com",
+              projectId: "login-9a924",
+              storageBucket: "login-9a924.appspot.com",
+              messagingSenderId: "726196954317",
+              appId: "1:726196954317:web:4d473bee8208e68a06f584"
+            };
+
+            const app = initializeApp(firebaseConfig);
+            const db = getDatabase();
+
+            let transactions = [];
+
+            const userEmail = getQueryParam("email");
+            let currentUserRef = ref(db, 'users/' + userEmail);
+
+            get(currentUserRef).then((snapshot) => {
+                if (snapshot.exists()) {
+                    transactions = snapshot.val().transactions || [];
+                } else {
+                    set(ref(db, 'users/' + userEmail), {transactions: []});
+                }
+                updateTotals();
+            }).catch((error) => {
+                console.error(error);
+            });
+
+            // Calculate and display total deposit, total withdraw, and total balance
             // Calculate and display total deposit, total withdraw, and total balance
             function updateTotals() {
                 const totalDeposit = transactions
@@ -86,19 +118,20 @@
                     .reduce((total, transaction) => total + transaction.amount, 0)
                     .toFixed(2);
                 document.getElementById("total-deposit").textContent = totalDeposit;
-        
+
                 const totalWithdraw = transactions
                     .filter(transaction => transaction.type === "withdraw")
                     .reduce((total, transaction) => total + transaction.amount, 0)
                     .toFixed(2);
                 document.getElementById("total-withdraw").textContent = totalWithdraw;
-        
+
                 const totalBalance = (parseFloat(totalDeposit) - parseFloat(totalWithdraw)).toFixed(2);
                 document.getElementById("total-balance").textContent = totalBalance;
             }
+
         
             updateTotals();
-        
+
             // Add event listeners to deposit and withdraw forms
             const depositForm = document.getElementById("deposit-form");
             const withdrawForm = document.getElementById("withdraw-form");
@@ -108,6 +141,7 @@
                 const depositAmount = parseFloat(document.getElementById("deposit-amount").value);
                 if (!isNaN(depositAmount) && depositAmount > 0) {
                     transactions.push({ type: "deposit", amount: depositAmount });
+                    update(currentUserRef, {transactions: transactions});
                     updateTotals();
                     depositForm.reset();
                 }
@@ -118,11 +152,13 @@
                 const withdrawAmount = parseFloat(document.getElementById("withdraw-amount").value);
                 if (!isNaN(withdrawAmount) && withdrawAmount > 0) {
                     transactions.push({ type: "withdraw", amount: withdrawAmount });
+                    update(currentUserRef, {transactions: transactions});
                     updateTotals();
                     withdrawForm.reset();
                 }
             });
-        </script>        
+
+          </script>       
     </body>
 </html>
 
